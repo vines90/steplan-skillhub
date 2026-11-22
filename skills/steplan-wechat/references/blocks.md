@@ -46,7 +46,7 @@
 | bullets | items | 方块圆点列表 |
 | image | caption, hint, height | 虚线图片位 + 图注；用户粘贴后换成真图 |
 | masthead | column, no | 报头：栏目名 + 期号（No.018 / CASE 07 / ESSAY 06） |
-| blockhead | kicker, title | 英文小字 + 大标题 + 短横杠，最通用的小标题 |
+| blockhead | title, kicker? | 英文小字（可省）+ 大标题 + 短横杠，最通用的小标题。后面紧跟 step 时不要再放 blockhead，两个大标题会叠在一起 |
 | keypoint | text, tag | 酸性绿金句卡，全文最多 1 张 |
 | end | — | 三横杠 + END 结束标记 |
 | related | items | 往期推荐标题列表（可选，没有就不放） |
@@ -55,7 +55,7 @@
 
 - `meta`：read（"8 分钟"）、level（1–3）、level_text（入门/进阶/高阶）、fit（适合人群）
 - `gets`：items（读完你将得到，3 条左右）
-- `step`：n、total、kicker（两字关键词）、title。横杠点亮 n 级，所以 total 最好是 3；超过 3 步改用 blockhead
+- `step`：n、total、title、kicker（可省，两字关键词）。横杠点亮 n 级，所以 total 最好是 3；超过 3 步改用 blockhead。一组步骤直接用 step，不必先放 blockhead
 - `prompt`：name、lines（每行一段）、note（底部说明）
 - `callout`：tag（避坑 / 注意 / 技巧，2 字最好）、text
 - `kv`：title（"FILTER · 三条筛选标准"）、rows `[[键, 值]]`，键 ≤ 6 字

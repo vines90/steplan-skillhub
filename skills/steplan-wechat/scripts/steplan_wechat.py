@@ -221,7 +221,7 @@ def gets(title, items, t):
 def step_head(n, total, kicker, title, t):
     return (S('display:flex;align-items:flex-end;margin:44px 0 10px;',
               stairs(n, t['head'], t['line2'])
-              + label(f'STEP {n:02d} / {total:02d} · {kicker}', t['muted'], ls=1.5,
+              + label(f'STEP {n:02d} / {total:02d}' + (f' · {kicker}' if kicker else ''), t['muted'], ls=1.5,
                       extra='margin-left:10px;line-height:1;')
               + shape(f'flex:1;height:0;margin-left:10px;border-top:1px solid {t["line"]};'))
             + f'<p style="margin:0 0 16px;font-size:20px;line-height:1.45;font-weight:800;letter-spacing:0.5px;'
@@ -599,7 +599,7 @@ def info_strip(cells):
 
 def block_head(kicker, title, t):
     return S('margin:40px 0 16px;',
-             label(kicker, t['muted'], ls=2)
+             (label(kicker, t['muted'], ls=2) if kicker else '')
              + f'<p style="margin:2px 0 10px;font-size:21px;line-height:1.45;font-weight:900;letter-spacing:0.5px;'
                f'color:{t["head"]};">{esc(title)}</p>'
              + shape(f'width:28px;height:4px;border-radius:1px;background-color:{t["head"]};'))
@@ -757,7 +757,7 @@ def b_masthead(t, column, no):
 
 
 @block
-def b_blockhead(t, kicker, title):
+def b_blockhead(t, title, kicker=''):
     """小标题：英文小字 + 大标题 + 短横杠"""
     return block_head(kicker, title, t)
 
@@ -795,7 +795,7 @@ def b_gets(t, items, title='YOU WILL GET · 读完你将得到'):
 
 
 @block
-def b_step(t, n, total, kicker, title):
+def b_step(t, n, total, title, kicker=''):
     """STEP 标题，三级横杠点亮 n 级"""
     return step_head(n, total, kicker, title, t)
 
@@ -1293,7 +1293,11 @@ def build_page(specs, out_dir):
 def shots(out_dir, names):
     from playwright.sync_api import sync_playwright
     shot_dir = out_dir / '预览图'
+    slice_dir = shot_dir / '切片'
     shot_dir.mkdir(exist_ok=True)
+    slice_dir.mkdir(exist_ok=True)
+    for old in slice_dir.glob('*.png'):
+        old.unlink()
     with sync_playwright() as p:
         try:
             browser = p.chromium.launch(channel='chrome')
@@ -1306,8 +1310,14 @@ def shots(out_dir, names):
             pg.evaluate(f'show({i})')
             pg.wait_for_timeout(200)
             path = shot_dir / f'{i + 1:02d}-{name}.png'
-            pg.locator('#device').screenshot(path=str(path))
+            device = pg.locator('#device')
+            device.screenshot(path=str(path))
             print('预览图：', path)
+            box = device.bounding_box()
+            for k, top in enumerate(range(0, int(box['height']), 1000), 1):
+                clip = dict(x=box['x'], y=box['y'] + top, width=box['width'],
+                            height=min(1000, box['height'] - top))
+                pg.screenshot(path=str(slice_dir / f'{i + 1:02d}-{name}-{k}.png'), clip=clip, full_page=True)
         browser.close()
 
 
