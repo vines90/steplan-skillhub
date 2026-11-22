@@ -11,7 +11,7 @@
 ## 安装
 
 ```bash
-git clone git@github.com:vines90/steplan-skillhub.git ~/Projects/steplan-skillhub
+git clone https://github.com/vines90/steplan-skillhub.git ~/Projects/steplan-skillhub
 ~/Projects/steplan-skillhub/install.sh
 ```
 
@@ -29,4 +29,4 @@ git clone git@github.com:vines90/steplan-skillhub.git ~/Projects/steplan-skillhu
 
 - 品牌规范以「深空黑 #16171C / 骨白 #F4F5F0 / 石墨灰 #8A8D94 / 酸性绿 #C8FF2E」为准，酸性绿只做强调。
 - 不在仓库里放密钥和账号信息；需要的凭证通过环境变量读取。
-- 技能里打包的字体（Unbounded、得意黑、JetBrains Mono）均为 SIL OFL 开源授权。
+- 技能里打包的字体（Unbounded、得意黑、JetBrains Mono）均为 SIL OFL 1.1 授权，版权声明与许可证见 `skills/steplan-wechat/assets/fonts/OFL.txt`；新增字体时同样附上许可证。
