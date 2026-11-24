@@ -45,6 +45,7 @@
 | p | text, size=15 | 正文；blocks 里直接写字符串等价 |
 | bullets | items | 方块圆点列表 |
 | image | caption, hint, height | 虚线图片位 + 图注；用户粘贴后换成真图 |
+| screenshot | src, caption, alt? | 真实截图 + 图注；src 为相对 article.json 的 PNG/JPG/WebP 路径，渲染时内嵌为 data URI |
 | masthead | column, no | 报头：栏目名 + 期号（No.018 / CASE 07 / ESSAY 06） |
 | blockhead | title, kicker? | 英文小字（可省）+ 大标题 + 短横杠，最通用的小标题。后面紧跟 step 时不要再放 blockhead，两个大标题会叠在一起 |
 | keypoint | text, tag | 酸性绿金句卡，全文最多 1 张 |

@@ -22,6 +22,8 @@ import sys
 from html.parser import HTMLParser
 
 SKILL_DIR = pathlib.Path(__file__).resolve().parent.parent
+# screenshot 块里的相对路径以 article.json 所在目录为基准（render 时设置）
+ASSET_DIR = pathlib.Path('.')
 
 # ── 定稿色值（00_定稿_深空黑/色值.txt）────────────────────────────
 VOID, BONE, GRAPHITE, LIME = '#16171C', '#F4F5F0', '#8A8D94', '#C8FF2E'
@@ -751,6 +753,26 @@ def b_image(t, caption, hint='图片位 · 建议宽 1080px', height=150):
 
 
 @block
+def b_screenshot(t, src, caption, alt=''):
+    """真实截图（PNG/JPG，路径相对 article.json；以 data URI 内嵌）+ 图注"""
+    import base64
+    path = pathlib.Path(src)
+    if not path.is_absolute():
+        path = ASSET_DIR / path
+    if not path.is_file():
+        raise ValueError(f'找不到截图文件 {path}')
+    mime = {'.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp'}.get(path.suffix.lower())
+    if not mime:
+        raise ValueError(f'不支持的图片格式 {path.suffix}')
+    data = base64.b64encode(path.read_bytes()).decode('ascii')
+    img = (f'<img src="data:{mime};base64,{data}" alt="{esc(alt or caption)}" '
+           f'style="display:block;width:100%;height:auto;border:1px solid {t["line2"]};border-radius:6px;">')
+    return (S('margin:24px 0 8px;', img)
+            + f'<p style="margin:0 0 24px;font-size:12px;line-height:1.6;color:{t["muted"]};text-align:center;">'
+              f'▲ {esc(caption)}</p>')
+
+
+@block
 def b_masthead(t, column, no):
     """报头：● STEPLAN 阶梯计划 — 栏目 / 期号"""
     return masthead(column, no, t)
@@ -1342,6 +1364,8 @@ def main():
         except json.JSONDecodeError as e:
             sys.exit(f'{path}：JSON 格式错误：{e}')
     out_dir = (args.out or args.specs[0].parent).resolve()
+    global ASSET_DIR
+    ASSET_DIR = args.specs[0].parent.resolve()
     names = build_page(specs, out_dir)
     if args.shots:
         shots(out_dir, names)
