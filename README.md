@@ -6,6 +6,7 @@
 
 | 技能 | 用途 | 触发示例 |
 |---|---|---|
+| [steplan-brand](skills/steplan-brand/SKILL.md) | 品牌视觉规范与资源包：标志全套文件、色彩、字体（含各软件字体坑）、图形元素、版式与文案口径；附 tokens.css / tokens.json、PPT 模板、标志导出脚本 | 「我们的品牌色 / logo 怎么用」「导出 512px 的头像」 |
 | [steplan-wechat](skills/steplan-wechat/SKILL.md) | 按 Steplan 品牌 VI 排公众号文章，生成可一键复制到公众号编辑器的预览页。内置 5 套模板：实战干货、深度观点、案例战报、阶梯周刊、招募发布 | 「用阶梯模板排这篇」「排一期阶梯周刊」 |
 | [steplan-poster](skills/steplan-poster/SKILL.md) | 按 Steplan VI 出海报 PNG：课程海报（大纲、讲师、报名二维码，长图 + 9:16）、活动招生、产品推广、金句 / 数据、公众号与小红书封面；品牌字体内置 | 「做一张训练营海报」「出一套公众号封面」 |
 

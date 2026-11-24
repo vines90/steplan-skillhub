@@ -1,0 +1,42 @@
+/* 阶梯计划 Steplan · 设计变量
+   用法：把 assets/fonts 一起拷到项目里，按实际路径改下面的 url()。 */
+@font-face { font-family: "Unbounded"; src: url("fonts/Unbounded.ttf"); font-weight: 200 900; }
+@font-face { font-family: "Smiley Sans"; src: url("fonts/SmileySans.ttf"); }
+@font-face { font-family: "Noto Sans SC"; src: url("fonts/NotoSansSC.ttf"); font-weight: 100 900; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono.ttf"); font-weight: 100 800; }
+
+:root {
+  /* 定稿四色（占比 46 / 28 / 14 / 12） */
+  --st-void: #16171C;
+  --st-bone: #F4F5F0;
+  --st-graphite: #8A8D94;
+  --st-lime: #C8FF2E;
+
+  /* 扩展中性色 */
+  --st-canvas: #060607;
+  --st-void-deep: #0C0D10;
+  --st-card-dark: #1F2027;
+  --st-raised-dark: #2A2C33;
+  --st-line-dark: #2E3038;
+  --st-dim-on-dark: #B4B6AF;
+  --st-ink: #33353B;
+  --st-muted: #5C5F66;
+  --st-line: #DCDDD6;
+  --st-bone-soft: #E3E5DC;
+
+  /* 字体 */
+  --st-font-display: "Smiley Sans", "PingFang SC", sans-serif;
+  --st-font-latin: "Unbounded", "Smiley Sans", sans-serif;
+  --st-font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --st-font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  /* 圆角：卡片 8–24px（按画面尺寸），胶囊全圆角 */
+  --st-radius: 12px;
+}
+
+/* 常用片段 */
+.st-label { font-family: var(--st-font-mono); letter-spacing: .14em; font-size: .75rem; }
+.st-latin { font-family: var(--st-font-latin); font-weight: 600; transform: skewX(-8deg); display: inline-block; }
+.st-dot { display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: currentColor; }
+.st-hl-lime { background: var(--st-lime); color: var(--st-void); padding: 0 .12em; }
+.st-hl-void { background: var(--st-void); color: var(--st-lime); padding: 0 .12em; }
