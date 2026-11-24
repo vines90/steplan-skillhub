@@ -1,0 +1,12 @@
+{
+  "template": "quote",
+  "theme": "dark",
+  "tag": "DATA · 阶梯周刊",
+  "number": {
+    "value": "6",
+    "unit": "×",
+    "label": "个性化 + 跟进的开发信，回复率是群发模板的 6 倍（示例数据）"
+  },
+  "text": "跟进不是催促，\n是给对方一个\n[[新的回复理由]]。",
+  "source": "阶梯周刊 VOL.012"
+}

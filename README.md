@@ -7,6 +7,7 @@
 | 技能 | 用途 | 触发示例 |
 |---|---|---|
 | [steplan-wechat](skills/steplan-wechat/SKILL.md) | 按 Steplan 品牌 VI 排公众号文章，生成可一键复制到公众号编辑器的预览页。内置 5 套模板：实战干货、深度观点、案例战报、阶梯周刊、招募发布 | 「用阶梯模板排这篇」「排一期阶梯周刊」 |
+| [steplan-poster](skills/steplan-poster/SKILL.md) | 按 Steplan VI 出海报 PNG：课程海报（大纲、讲师、报名二维码，长图 + 9:16）、活动招生、产品推广、金句 / 数据、公众号与小红书封面；品牌字体内置 | 「做一张训练营海报」「出一套公众号封面」 |
 
 ## 安装
 
@@ -17,7 +18,7 @@ git clone https://github.com/vines90/steplan-skillhub.git ~/Projects/steplan-ski
 
 `install.sh` 把 `skills/` 下的每个技能软链接到 `~/.claude/skills/`。以后 `git pull` 后技能自动是最新的；新增了技能再跑一次 `install.sh`。
 
-依赖：Python 3。`steplan-wechat` 导出预览截图还需要 `pip install playwright` 和本机 Chrome。
+依赖：Python 3。`steplan-wechat` 的预览截图和 `steplan-poster` 出图需要 Python 版 playwright 和本机 Chrome；`steplan-poster` 生成二维码用的 segno 已内置在 `scripts/_vendor/`（BSD 协议）。
 
 ## 新增技能
 
